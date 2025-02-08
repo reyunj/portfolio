@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import aboutImg from "@/public/assets/images/about.jpg";
 
@@ -12,9 +12,31 @@ const About = ({ completedProjects }) => {
   const years = Math.floor(diffInMonths / 12);
   const months = diffInMonths % 12;
 
+  const [completedProjectsCount, setCompletedProjectsCount] = useState(0);
+  const [companiesWorkCount, setCompaniesWorkCount] = useState(0);
+
+  useEffect(() => {
+    const targetCompletedProjects = completedProjects;
+    const targetCompaniesWork = 6; 
+    const incrementCount = (target, setCount) => {
+      let count = 0;
+      const interval = setInterval(() => {
+        if (count >= target) {
+          clearInterval(interval);
+        } else {
+          count++;
+          setCount(count);
+        }
+      }, 150); 
+    };
+
+    incrementCount(targetCompletedProjects, setCompletedProjectsCount);
+    incrementCount(targetCompaniesWork, setCompaniesWorkCount);
+  }, [completedProjects]);
+
   const info = [
-    { text: "Completed Projects", count: completedProjects},
-    { text: "Companies Work", count: "04" },
+    { text: "Completed Projects", count: completedProjectsCount },
+    { text: "Companies Work", count: companiesWorkCount },
   ];
 
   return (
@@ -33,10 +55,10 @@ const About = ({ completedProjects }) => {
               <div className="flex mt-10 items-center justify-center gap-7">
                 {info.map((content) => (
                   <div key={content.text}>
-                    <h3 className="md:text-4xl text-2xl font-semibold text-gray-800 dark:text-white">
-                      {content.count}
-                      <span className="text-cyan-600">+</span>
-                    </h3>
+                    <div className="md:text-4xl text-2xl font-semibold text-gray-800 dark:text-white">
+                      <span className="font-bold">{String(content.count).padStart(2, '0')}</span>
+                      <span className="text-cyan-600 font-bold">+</span>
+                    </div>
                     <span className="md:text-base text-xs">{content.text}</span>
                   </div>
                 ))}

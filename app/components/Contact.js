@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { IoMdMail, IoLogoWhatsapp, IoMdLocate } from "react-icons/io";
+import { IoMdMail, IoLogoWhatsapp} from "react-icons/io";
 
 const Contact = () => {
   const [status, setStatus] = useState({
@@ -84,7 +84,6 @@ const Contact = () => {
   const contact_info = [
     { logo: <IoMdMail size={24} color="#00bfae" />, text: "junrey1296@gmail.com" },
     { logo: <IoLogoWhatsapp size={24} color="#25D366" />, text: "(+63)933-4823-965" },
-    { logo: <IoMdLocate size={24} color="#00bfae" />, text: "Maguikay, Mandaue City, Cebu" },
   ];
   
 
@@ -117,7 +116,7 @@ const Contact = () => {
               onChange={handleOnChange}
               value={inputs.message}
             />
-            <button type="submit" className="btn-primary w-fit" disabled={status.submitting}>
+            <button type="submit" className="px-6 py-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 transition-colors duration-300 w-fit" disabled={status.submitting}>
               {!status.submitting ? (!status.submitted ? "Send Message" : "Sent") : "Sending..."}
             </button>
           </form>

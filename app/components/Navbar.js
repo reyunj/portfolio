@@ -46,9 +46,11 @@ const NavBar = () => {
   return (
     <div className="flex justify-between items-center w-full h-15 p-4 text-gray-500 dark:text-white bg-gray-100 dark:bg-black fixed">
       <div className="mx-7">
-        <h4 className="text-4xl uppercase font-bold text-gray-900 dark:text-white">
-          JU<span className="text-cyan-600">NR</span>EY
-        </h4>
+        <Link href="/" passHref>
+          <h4 className="text-4xl uppercase font-bold text-gray-900 dark:text-white cursor-pointer">
+            JU<span className="text-cyan-600">NR</span>EY
+          </h4>
+        </Link>
       </div>
 
       <div className="hidden md:flex items-center">
